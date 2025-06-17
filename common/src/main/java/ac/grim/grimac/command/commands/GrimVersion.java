@@ -67,7 +67,6 @@ public class GrimVersion implements BuildableCommand {
                 LogUtil.error("Failed to check latest GrimAC version. Response code: " + response.statusCode());
                 return;
             }
-            // Using old JsonParser method, as old versions of Gson don't include the static one
             JsonObject object = JsonParser.parseString(response.body()).getAsJsonArray().get(0).getAsJsonObject();
             String latest = object.get("version_number").getAsString();
             Status status = compareVersions(current, latest);
